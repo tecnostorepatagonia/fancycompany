@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TecnoStore Patagonia</title>
+<title>Fancy Company</title>
 
-<link rel="icon" type="image/png" href="https://xabsqkyucsrnonogoxfn.supabase.co/storage/v1/object/public/logos/icono%20pag.png">
-<link rel="apple-touch-icon" href="https://xabsqkyucsrnonogoxfn.supabase.co/storage/v1/object/public/logos/icono%20pag.png">
+<link rel="icon" type="image/jpeg" href="logo-fancy.jpeg">
+<link rel="apple-touch-icon" href="logo-fancy.jpeg">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -31,6 +30,7 @@ html{scroll-behavior:smooth;}
 body{
   margin:0;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
   background:
     radial-gradient(circle at top left, rgba(183,95,192,.10), transparent 28%),
     radial-gradient(circle at top right, rgba(142,58,147,.08), transparent 24%),
@@ -361,10 +361,10 @@ button{font:inherit;}
   margin-bottom:14px;
   letter-spacing:.03em;
 }
-.brand-iphone{ background:#eef2ff; color:#312e81; }
-.brand-samsung{ background:#1428a0; color:#fff; }
-.brand-motorola{ background:#ff0000; color:#fff; }
-.brand-xiaomi{ background:#ff6900; color:#fff; }
+.brand-buzo{ background:#f3e6f5; color:#5C2361; }
+.brand-pantalon{ background:#2a0e30; color:#fff; }
+.brand-remera{ background:#B75FC0; color:#fff; }
+.brand-generico{ background:#eef2ff; color:#312e81; }
 .product-image-wrap{
   height:240px;
   display:grid;
@@ -548,40 +548,31 @@ button{font:inherit;}
 .logo-animated{ animation:float 3s ease-in-out infinite; }
 
 
-.hero-phone{
+.hero-deco{
   position:absolute;
-  right:72px;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:2;
-  width:min(34vw,420px);
+  inset:0;
+  z-index:1;
   pointer-events:none;
 }
-.hero-phone img{
-  width:100%;
-  height:auto;
-  object-fit:contain;
-  filter:
-    drop-shadow(0 30px 60px rgba(0,0,0,.45))
-    drop-shadow(0 0 36px rgba(183,95,192,.18));
+.hero-star{
+  position:absolute;
+  fill:rgba(255,255,255,.85);
+  filter:drop-shadow(0 0 18px rgba(217,168,224,.45));
+  animation:twinkle 3.2s ease-in-out infinite;
 }
+.hero-star-1{ width:34px; height:34px; right:18%; top:22%; animation-delay:.2s; }
+.hero-star-2{ width:20px; height:20px; right:32%; top:60%; animation-delay:1s; }
+.hero-star-3{ width:52px; height:52px; right:8%; top:52%; animation-delay:.6s; opacity:.7; }
 
-@media (max-width: 1024px){
-  .hero-phone{
-    right:40px;
-    width:min(32vw,320px);
-  }
+@keyframes twinkle{
+  0%,100%{ transform:scale(1); opacity:.85; }
+  50%{ transform:scale(1.25); opacity:.35; }
 }
 
 @media (max-width: 768px){
-  .hero-phone{
-    position:relative;
-    right:auto;
-    top:auto;
-    transform:none;
-    width:min(72vw,290px);
-    margin:18px auto 0;
-  }
+  .hero-star-1{ right:10%; top:14%; }
+  .hero-star-2{ right:20%; top:76%; }
+  .hero-star-3{ right:4%; top:50%; width:38px; height:38px; }
 }
 
 
@@ -709,27 +700,27 @@ button{font:inherit;}
   <div class="nav-shell">
     <div class="hidden md:flex items-center justify-between px-5 py-3">
       <div onclick="irHome()" class="cursor-pointer">
-        <img src="https://xabsqkyucsrnonogoxfn.supabase.co/storage/v1/object/public/logos/trans.png" class="h-16 md:h-20 object-contain" alt="TecnoStore Patagonia">
+        <img src="logo-fancy.jpeg" class="h-16 md:h-20 object-contain rounded-xl" alt="Fancy Company">
       </div>
 
       <div class="flex gap-3 text-white text-sm font-medium items-center">
         <button onclick="irHome()" class="nav-link active">HOME</button>
-        <button onclick="irEquiposSellados()" class="nav-link">EQUIPOS SELLADOS</button>
-        <button onclick="irEquiposSeminuevos()" class="nav-link">EQUIPOS SEMINUEVOS</button>
-        <button onclick="irOtrosProductos()" class="nav-link">OTROS PRODUCTOS</button>
-        <button onclick="irQuienesSomos()" class="nav-link">QUIÉNES SOMOS</button>
+        <button onclick="irBuzosCamperas()" class="nav-link">BUZOS/CAMPERAS</button>
+        <button onclick="irPantalones()" class="nav-link">PANTALONES</button>
+        <button onclick="irRemeras()" class="nav-link">REMERAS</button>
+        <button onclick="irQuienesSomos()" class="nav-link">NOSOTROS</button>
       </div>
     </div>
 
     <div class="md:hidden flex flex-col w-full">
       <div onclick="irHome()" class="cursor-pointer navbar-logo-mobile">
-        <img src="https://xabsqkyucsrnonogoxfn.supabase.co/storage/v1/object/public/logos/trans.png" class="logo-animated" alt="TecnoStore Patagonia">
+        <img src="logo-fancy.jpeg" class="logo-animated rounded-xl" alt="Fancy Company">
       </div>
       <div class="navbar-menu-mobile text-white font-medium">
         <button onclick="irHome()" class="nav-link active">HOME</button>
-        <button onclick="irEquiposSellados()" class="nav-link">SELLADOS</button>
-        <button onclick="irEquiposSeminuevos()" class="nav-link">SEMINUEVOS</button>
-        <button onclick="irOtrosProductos()" class="nav-link">OTROS</button>
+        <button onclick="irBuzosCamperas()" class="nav-link">BUZOS/CAMPERAS</button>
+        <button onclick="irPantalones()" class="nav-link">PANTALONES</button>
+        <button onclick="irRemeras()" class="nav-link">REMERAS</button>
         <button onclick="irQuienesSomos()" class="nav-link">NOSOTROS</button>
       </div>
     </div>
@@ -741,10 +732,10 @@ button{font:inherit;}
 
   <div class="hero-content">
     <div class="hero-copy">
-      <div class="hero-kicker">Tecnología premium en Patagonia</div>
-      <h1 class="hero-title">Elegí tu próximo <span>smartphone</span> con respaldo real.</h1>
+      <div class="hero-kicker">✦ Moda urbana con actitud ✦</div>
+      <h1 class="hero-title">Vestí tu estilo con <span>Fancy</span> Company.</h1>
       <p class="hero-description">
-        Equipos sellados y seminuevos, atención personalizada y una experiencia de compra más clara, confiable y moderna.
+        Buzos, camperas, pantalones y remeras pensados para quienes no siguen las reglas. Diseño, calidad y una experiencia de compra clara y directa.
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="https://wa.me/5492945413896" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
@@ -753,14 +744,16 @@ button{font:inherit;}
     </div>
   </div>
 
-  <div class="hero-phone">
-    <img src="https://mastronics.vtexassets.com/arquivos/ids/166860/Celular-Appe-iPhone-17-PRO-MAX-Azul-3.png?v=638939865710500000" alt="iPhone 17 Pro Max Azul">
+  <div class="hero-deco" aria-hidden="true">
+    <svg viewBox="0 0 100 100" class="hero-star hero-star-1"><path d="M50 0 L58 40 L100 50 L58 60 L50 100 L42 60 L0 50 L42 40 Z"/></svg>
+    <svg viewBox="0 0 100 100" class="hero-star hero-star-2"><path d="M50 0 L58 40 L100 50 L58 60 L50 100 L42 60 L0 50 L42 40 Z"/></svg>
+    <svg viewBox="0 0 100 100" class="hero-star hero-star-3"><path d="M50 0 L58 40 L100 50 L58 60 L50 100 L42 60 L0 50 L42 40 Z"/></svg>
   </div>
 
   <div class="hero-card">
     <div class="hero-card-title">Compra con confianza</div>
     <p>
-      Atención rápida, catálogo actualizado y equipos destacados para que elijas más fácil. <strong>TecnoStore Patagonia</strong> combina diseño, claridad y conversión.
+      Atención rápida, catálogo actualizado y prendas destacadas para que elijas más fácil. <strong>Fancy Company</strong> combina diseño, actitud y estilo real.
     </p>
   </div>
 </section>
@@ -771,7 +764,7 @@ button{font:inherit;}
       <div class="feature-item">
         <div class="feature-icon">✓</div>
         <div>
-          <h3>Equipos destacados</h3>
+          <h3>Prendas destacadas</h3>
           <p>Selección curada para mostrar lo más atractivo y acelerar la decisión de compra.</p>
         </div>
       </div>
@@ -779,14 +772,14 @@ button{font:inherit;}
         <div class="feature-icon">⚡</div>
         <div>
           <h3>Atención directa</h3>
-          <p>Consultá al instante por WhatsApp y recibí respuesta rápida sobre stock y precios.</p>
+          <p>Consultá al instante por WhatsApp y recibí respuesta rápida sobre stock y talles.</p>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">★</div>
         <div>
-          <h3>Diseño más premium</h3>
-          <p>Una estética más sólida, moderna y confiable para reforzar la percepción de marca.</p>
+          <h3>Estilo con actitud</h3>
+          <p>Una estética más sólida, moderna y confiable para reforzar la identidad de marca.</p>
         </div>
       </div>
     </div>
@@ -798,10 +791,10 @@ button{font:inherit;}
     <div class="section-head">
       <div>
         <span class="section-eyebrow">Selección destacada</span>
-        <h2 class="section-title">Los más vendidos</h2>
-        <p class="section-description">Una grilla más limpia, más visual y más enfocada en conversión para destacar mejor los productos más atractivos del catálogo.</p>
+        <h2 class="section-title">Lo más vendido</h2>
+        <p class="section-description">Una grilla más limpia, más visual y más enfocada en conversión para destacar mejor las prendas más atractivas del catálogo.</p>
       </div>
-      <a class="section-cta" href="https://wa.me/5492945413896?text=Hola%2C%20quiero%20ver%20m%C3%A1s%20equipos" target="_blank" rel="noopener noreferrer">Pedir más modelos</a>
+      <a class="section-cta" href="https://wa.me/5492945413896?text=Hola%2C%20quiero%20ver%20m%C3%A1s%20prendas" target="_blank" rel="noopener noreferrer">Pedir más modelos</a>
     </div>
 
     <div id="catalogo-grid" class="catalog-grid"></div>
@@ -809,17 +802,17 @@ button{font:inherit;}
     <div class="mini-banner">
       <div class="mini-banner-inner">
         <div>
-          <h3>¿Buscás otro modelo o más capacidad?</h3>
-          <p>Te ayudamos a encontrar la mejor opción según uso, presupuesto y disponibilidad. Ideal para convertir visitas en conversaciones directas.</p>
+          <h3>¿Buscás otro talle o color?</h3>
+          <p>Te ayudamos a encontrar la mejor opción según talle, estilo y disponibilidad. Ideal para convertir visitas en conversaciones directas.</p>
         </div>
-        <a class="btn-primary" href="https://wa.me/5492945413896?text=Hola%2C%20quiero%20asesoramiento%20para%20elegir%20un%20equipo" target="_blank" rel="noopener noreferrer">Solicitar asesoramiento</a>
+        <a class="btn-primary" href="https://wa.me/5492945413896?text=Hola%2C%20quiero%20asesoramiento%20para%20elegir%20una%20prenda" target="_blank" rel="noopener noreferrer">Solicitar asesoramiento</a>
       </div>
     </div>
   </div>
 </main>
 
 <div class="floating-buttons">
-  <a href="https://www.instagram.com/tecnostore.patagonia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+  <a href="https://www.instagram.com/fancy.company/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
     <img src="https://static.vecteezy.com/system/resources/thumbnails/042/127/160/small/instagram-logo-on-circle-style-with-transparent-background-free-png.png" alt="Instagram">
   </a>
   <a href="https://wa.me/5492945413896" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
@@ -829,7 +822,7 @@ button{font:inherit;}
 
 <div id="social-proof" class="social-proof-wrap">
   <div class="social-proof-card">
-    <img id="sp-avatar" class="social-proof-avatar" src="" alt="Equipo">
+    <img id="sp-avatar" class="social-proof-avatar" src="" alt="Prenda">
     <div style="flex:1;">
       <div id="sp-text" class="social-proof-text"></div>
       <div id="sp-time" class="social-proof-time"></div>
@@ -845,16 +838,22 @@ const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 let productos=[];
 
-function obtenerBrandBadge(marca){
-  if (marca === 'SAMSUNG') return '<span class="brand-badge brand-samsung">SAMSUNG</span>';
-  if (marca === 'MOTOROLA') return '<span class="brand-badge brand-motorola">MOTOROLA</span>';
-  if (marca === 'XIAOMI') return '<span class="brand-badge brand-xiaomi">XIAOMI</span>';
-  return '<span class="brand-badge brand-iphone">IPHONE</span>';
+// Nombre de la tabla en Supabase. Cambialo cuando tengas tu tabla definitiva.
+const TABLA_PRODUCTOS = 'productos_ropa';
+
+function obtenerCategoriaBadge(categoria){
+  const cat = (categoria || '').toString().trim().toUpperCase();
+  if (cat === 'BUZO' || cat === 'CAMPERA' || cat === 'BUZOS' || cat === 'CAMPERAS') return `<span class="brand-badge brand-buzo">${cat}</span>`;
+  if (cat === 'PANTALON' || cat === 'PANTALONES' || cat === 'PANTALÓN') return '<span class="brand-badge brand-pantalon">PANTALÓN</span>';
+  if (cat === 'REMERA' || cat === 'REMERAS') return '<span class="brand-badge brand-remera">REMERA</span>';
+  return `<span class="brand-badge brand-generico">${cat || 'PRENDA'}</span>`;
 }
 
-
 async function cargarProductos(){
-  const { data } = await supabaseClient.from('productos_iphone').select('*').eq('activo', true);
+  const { data, error } = await supabaseClient.from(TABLA_PRODUCTOS).select('*').eq('activo', true);
+  if (error) {
+    console.warn('No se pudo leer la tabla de productos todavía:', error.message);
+  }
   productos = data || [];
   renderizar(productos);
   iniciarSocialProof();
@@ -866,25 +865,31 @@ function renderizar(lista){
 
   const top4 = (lista || []).slice(0, 4);
 
+  if (top4.length === 0) {
+    grid.innerHTML = `<p class="text-sm" style="color:var(--muted); grid-column:1/-1;">Todavía no hay productos cargados. Conectá tu tabla de Supabase (<code>${TABLA_PRODUCTOS}</code>) para ver el catálogo acá.</p>`;
+    return;
+  }
+
   top4.forEach(item => {
-    const precio = Number(item.precio_contado || 0).toLocaleString('es-AR');
-    const memoria = item.memoria ? `<span class="text-xs text-slate-400 font-medium">${item.memoria}</span>` : '';
+    const nombre = item.nombre || item.modelo || 'Prenda disponible';
+    const precio = Number(item.precio || item.precio_contado || 0).toLocaleString('es-AR');
+    const talle = item.talle ? `<span class="text-xs text-slate-400 font-medium">Talle ${item.talle}</span>` : '';
 
     grid.innerHTML += `
       <article class="product-card">
         <div class="product-inner">
-          ${obtenerBrandBadge(item.series)}
+          ${obtenerCategoriaBadge(item.categoria)}
           <div class="product-image-wrap">
-            <img src="${item.imagen_1}" class="product-image" alt="${item.modelo || 'Equipo'}">
+            <img src="${item.imagen_1 || item.imagen || ''}" class="product-image" alt="${nombre}">
           </div>
-          <h3 class="product-title">${item.modelo || 'Equipo disponible'}</h3>
-          <p class="product-meta">${item.color || 'Color a consultar'} ${memoria ? '• ' + item.memoria : ''}</p>
+          <h3 class="product-title">${nombre}</h3>
+          <p class="product-meta">${item.color || 'Color a consultar'} ${talle ? '• ' + item.talle : ''}</p>
           <div class="product-footer">
             <div>
-              <span class="product-price-label">Precio contado</span>
+              <span class="product-price-label">Precio</span>
               <div class="product-price">$${precio}</div>
             </div>
-            <a href="https://wa.me/5492945413896?text=Hola%20quiero%20${encodeURIComponent(item.modelo || '')}" class="product-button" target="_blank" rel="noopener noreferrer">Consultar</a>
+            <a href="https://wa.me/5492945413896?text=Hola%20quiero%20${encodeURIComponent(nombre)}" class="product-button" target="_blank" rel="noopener noreferrer">Consultar</a>
           </div>
         </div>
       </article>`;
@@ -892,9 +897,9 @@ function renderizar(lista){
 }
 
 function irHome(){ window.location.href = 'index.html'; }
-function irEquiposSellados(){ window.location.href = 'equipos-sellados.html'; }
-function irEquiposSeminuevos(){ window.location.href = 'equipos-seminuevos.html'; }
-function irOtrosProductos(){ window.location.href = 'otros-productos.html'; }
+function irBuzosCamperas(){ window.location.href = 'buzos-camperas.html'; }
+function irPantalones(){ window.location.href = 'pantalones.html'; }
+function irRemeras(){ window.location.href = 'remeras.html'; }
 function irQuienesSomos(){ window.location.href = 'quienes-somos.html'; }
 
 const SP = {
@@ -920,24 +925,22 @@ function cerrarSocialProof(){
 }
 
 function formatearProductoParaSP(p){
-  if (!p) return 'un equipo';
+  if (!p) return 'una prenda';
 
-  const modelo = (p.modelo || '').trim();
-  const memoria = (p.memoria || '').trim();
+  const nombre = (p.nombre || p.modelo || '').trim();
+  const talle = (p.talle || '').trim();
   const color = (p.color || '').trim();
 
-  let base = modelo;
-  if (memoria && base && !base.toLowerCase().includes(memoria.toLowerCase())) {
-    base = `${base} ${memoria}`;
-  }
-  if (color) base = `${base} (${color})`;
+  let base = nombre;
+  if (talle) base = `${base} (talle ${talle})`;
+  else if (color) base = `${base} (${color})`;
 
-  return base || 'un equipo';
+  return base || 'una prenda';
 }
 
 function spPickProductoReal(){
   if (!Array.isArray(productos) || productos.length === 0) return null;
-  const pool = productos.filter(p => p && p.modelo && p.imagen_1);
+  const pool = productos.filter(p => p && (p.nombre || p.modelo) && (p.imagen_1 || p.imagen));
   if (pool.length === 0) return productos[Math.floor(Math.random() * productos.length)];
   return pool[Math.floor(Math.random() * pool.length)];
 }
@@ -949,7 +952,7 @@ function spRender(){
 
   const prod = spPickProductoReal();
   const prodText = formatearProductoParaSP(prod);
-  const img = prod && prod.imagen_1 ? prod.imagen_1 : 'https://via.placeholder.com/80?text=Equipo';
+  const img = prod && (prod.imagen_1 || prod.imagen) ? (prod.imagen_1 || prod.imagen) : 'https://via.placeholder.com/80?text=Fancy';
 
   SP.avatarEl.src = img;
   SP.textEl.textContent = `${nombre} de ${ciudad} acaba de comprar ${prodText}.`;
