@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Fancy Company</title>
+<link rel="icon" type="image/jpeg" href="logo-fancy.jpeg">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @layer utilities {
+    @supports (backdrop-filter: blur(1px)) {
+      .no-warn { @apply block; }
+    }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen font-sans text-slate-100">
+
+<!-- LOGIN SECTION -->
+<div id="login-box" class="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div class="w-full max-w-md">
+        <!-- CARD CONTAINER -->
+        <div class="relative">
+            <!-- Glow effect -->
+            <div class="absolute inset-0 bg-gradient-to-r from-[#8E3A93] via-[#B75FC0] to-[#8E3A93] rounded-3xl blur-2xl opacity-40 -z-10"></div>
+            
+            <div class="bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-2xl p-10 space-y-6 border border-slate-700/50">
+                
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <div class="mb-6 flex justify-center relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#8E3A93] to-[#B75FC0] rounded-3xl blur-xl opacity-50"></div>
+                        <img src="logo-fancy.jpeg" alt="Fancy Company" class="relative w-20 h-20 rounded-3xl object-cover shadow-2xl">
+                    </div>
+                    <h1 class="text-5xl font-black bg-gradient-to-r from-[#d9a8e0] via-[#eccbf0] to-[#d9a8e0] bg-clip-text text-transparent mb-2">Fancy</h1>
+                    <p class="text-slate-400 text-lg font-light tracking-wide">Admin Control Panel</p>
+                </div>
+
+                <!-- Form -->
+                <div class="space-y-4">
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                            <i class="fas fa-envelope text-[#d68fdd]"></i>Email Address
+                        </label>
+                        <div class="relative">
+                            <input id="email" type="email" placeholder="admin@fancycompany.com" 
+                                   class="w-full px-4 py-3.5 rounded-xl bg-slate-700/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#B75FC0] focus:border-transparent transition duration-300 backdrop-blur-sm">
+                            <div class="absolute right-3 top-3.5 text-[#B75FC0] opacity-0 group-focus-within:opacity-100 transition">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="group">
+                        <label class="block text-sm font-semibold text-slate-300 mb-2 flex items-center gap-2">
+                            <i class="fas fa-lock text-[#d68fdd]"></i>Password
+                        </label>
+                        <div class="relative">
+                            <input id="password" type="password" placeholder="Enter your password" 
+                                   class="w-full px-4 py-3.5 rounded-xl bg-slate-700/50 border border-slate-600/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#B75FC0] focus:border-transparent transition duration-300 backdrop-blur-sm">
+                            <button type="button" onclick="togglePassword()" class="absolute right-3 top-3.5 text-slate-400 hover:text-[#d68fdd] transition">
+                                <i id="eye-icon" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Remember & Forgot -->
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="w-4 h-4 rounded bg-slate-700 border-slate-600 accent-[#B75FC0]">
+                        <span class="text-slate-400 group-hover:text-slate-300">Remember me</span>
+                    </label>
+                    <a href="#" class="text-slate-400 hover:text-[#d68fdd] transition">Forgot password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button onclick="login()" class="w-full bg-gradient-to-r from-[#7a3280] via-[#a83fb0] to-[#7a3280] hover:from-[#5C2361] hover:via-[#8E3A93] hover:to-[#5C2361] text-white font-bold py-3.5 rounded-xl transition duration-300 shadow-lg hover:shadow-xl hover:shadow-[#B75FC0]/25 transform hover:scale-105 active:scale-95">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Sign In to Dashboard
+                </button>
+
+                <!-- Divider -->
+                <div class="flex items-center gap-4">
+                    <div class="flex-1 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+                    <span class="text-slate-500 text-xs">v2.0</span>
+                    <div class="flex-1 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+                </div>
+
+                <!-- Footer -->
+                <p class="text-center text-slate-500 text-xs leading-relaxed">
+                    © 2026 Fancy Company. All rights reserved.<br>
+                    <span class="text-slate-600">Secure admin access only</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Security Badge -->
+        <div class="mt-6 flex justify-center items-center gap-2 text-slate-400 text-xs">
+            <i class="fas fa-shield-alt text-green-500"></i>
+            <span>Encrypted & Secure Connection</span>
+        </div>
+    </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="panel" style="display:none;" class="min-h-screen py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-4xl font-bold bg-gradient-to-r from-[#c17cc9] to-[#d68fdd] bg-clip-text text-transparent mb-2">
+                    <i class="fas fa-chart-line mr-3"></i>Panel de Administración
+                </h1>
+                <p class="text-slate-400">Gestioná el catálogo de Fancy Company</p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="toggleTheme()" class="bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white font-bold py-2 px-6 rounded-lg transition shadow-lg flex items-center gap-2">
+                    <i id="theme-icon" class="fas fa-sun"></i><span id="theme-text">Modo Claro</span>
+                </button>
+                <button onclick="logout()" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold py-2 px-6 rounded-lg transition shadow-lg">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-800 to-slate-700 rounded-t-2xl p-1 flex flex-wrap gap-2 border border-b-0 border-slate-600 mb-0">
+            <button onclick="cambiarPestana('todos')" id="tab-todos" class="tab-btn active flex-1 px-6 py-3 rounded-t-lg font-bold flex items-center justify-center gap-2 transition">
+                <i class="fas fa-th-large"></i>Todos
+            </button>
+            <button onclick="cambiarPestana('buzos')" id="tab-buzos" class="tab-btn flex-1 px-6 py-3 rounded-t-lg font-bold flex items-center justify-center gap-2 transition">
+                <i class="fas fa-tshirt"></i>Buzos/Camperas
+            </button>
+            <button onclick="cambiarPestana('pantalones')" id="tab-pantalones" class="tab-btn flex-1 px-6 py-3 rounded-t-lg font-bold flex items-center justify-center gap-2 transition">
+                <i class="fas fa-socks"></i>Pantalones
+            </button>
+            <button onclick="cambiarPestana('remeras')" id="tab-remeras" class="tab-btn flex-1 px-6 py-3 rounded-t-lg font-bold flex items-center justify-center gap-2 transition">
+                <i class="fas fa-vest"></i>Remeras
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-6 border border-slate-600 shadow-lg dark-mode-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-400 text-sm font-semibold">Total Productos</p>
+                        <p class="text-3xl font-bold text-white mt-2" id="total-productos">0</p>
+                    </div>
+                    <div class="bg-[#8E3A93]/20 rounded-lg p-3">
+                        <i class="fas fa-boxes text-2xl text-[#c17cc9]"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-6 border border-slate-600 shadow-lg dark-mode-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-400 text-sm font-semibold">Buzos/Camperas</p>
+                        <p class="text-3xl font-bold text-green-400 mt-2" id="buzos-productos">0</p>
+                    </div>
+                    <div class="bg-green-500/20 rounded-lg p-3">
+                        <i class="fas fa-tshirt text-2xl text-green-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-6 border border-slate-600 shadow-lg dark-mode-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-400 text-sm font-semibold">Pantalones</p>
+                        <p class="text-3xl font-bold text-yellow-400 mt-2" id="pantalones-productos">0</p>
+                    </div>
+                    <div class="bg-yellow-500/20 rounded-lg p-3">
+                        <i class="fas fa-socks text-2xl text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl p-6 border border-slate-600 shadow-lg dark-mode-card">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-400 text-sm font-semibold">Remeras</p>
+                        <p class="text-3xl font-bold text-[#d68fdd] mt-2" id="remeras-productos">0</p>
+                    </div>
+                    <div class="bg-[#B75FC0]/20 rounded-lg p-3">
+                        <i class="fas fa-vest text-2xl text-[#d68fdd]"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-2xl p-8 mb-8 border border-slate-600 dark-mode-card">
+            <h2 class="text-3xl font-bold text-white mb-2 flex items-center">
+                <i class="fas fa-plus-circle mr-3 text-[#c17cc9]"></i><span id="form-titulo">Cargar Nueva Prenda</span>
+            </h2>
+            <p class="text-slate-400 mb-8">
+                <span id="tipo-pestana-label">Completá todos los campos para agregar una nueva prenda a tu catálogo</span>
+            </p>
+
+            <form id="ropa-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <input type="hidden" id="producto-id">
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-tag mr-2 text-[#c17cc9]"></i>Nombre de la prenda *
+                    </label>
+                    <input type="text" id="nombre" placeholder="Buzo oversize negro"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-layer-group mr-2 text-[#c17cc9]"></i>Categoría *
+                    </label>
+                    <select id="categoria" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input" required>
+                        <option value="">Seleccioná una categoría</option>
+                        <option value="BUZO">Buzo</option>
+                        <option value="CAMPERA">Campera</option>
+                        <option value="PANTALON">Pantalón</option>
+                        <option value="REMERA">Remera</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-ruler mr-2 text-[#c17cc9]"></i>Talle *
+                    </label>
+                    <input type="text" id="talle" placeholder="S, M, L, XL, 40, Único..."
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-palette mr-2 text-[#c17cc9]"></i>Color *
+                    </label>
+                    <input type="text" id="color" placeholder="Negro, Blanco, Bordo" 
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-warehouse mr-2 text-[#c17cc9]"></i>Stock disponible
+                    </label>
+                    <input type="number" id="stock" placeholder="10" step="1" min="0"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input">
+                </div>
+
+                <div class="flex items-end">
+                    <label class="flex items-center gap-3 cursor-pointer bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-3 w-full dark-mode-input">
+                        <input type="checkbox" id="destacado" class="w-5 h-5 rounded accent-[#B75FC0]">
+                        <span class="text-sm font-semibold text-slate-300"><i class="fas fa-star mr-2 text-yellow-400"></i>Mostrar en destacados (home)</span>
+                    </label>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-align-left mr-2 text-[#c17cc9]"></i>Descripción
+                    </label>
+                    <textarea id="descripcion" placeholder="Ej: Tela de algodón peinado, corte oversize, friza interior..." 
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition resize-none dark-mode-input" rows="3"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-dollar-sign mr-2 text-green-400"></i>Precio *
+                    </label>
+                    <input type="number" id="precio" placeholder="25000" step="100" oninput="actualizarPrevisualizacion()"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input" required>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-percentage mr-2 text-orange-400"></i>% Descuento (Opcional)
+                    </label>
+                    <input type="number" id="descuento_porcentaje" placeholder="20" step="0.1" min="0" max="100" oninput="actualizarPrevisualizacion()"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-eye mr-2 text-purple-400"></i>Vista Previa
+                    </label>
+                    <div id="preview-descuento" class="w-full px-4 py-3 rounded-lg bg-slate-600 border border-slate-500 text-slate-300 dark-mode-preview"></div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-credit-card mr-2 text-[#c17cc9]"></i>Precio Tarjeta (Opcional)
+                    </label>
+                    <input type="number" id="precio_tarjeta" placeholder="30000" step="100"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input">
+                </div>
+
+                <!-- ✅ NUEVO CAMPO: Link Mercado Pago -->
+                <div class="lg:col-span-2">
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-link mr-2 text-green-400"></i>Link Mercado Pago (mp_link)
+                    </label>
+                    <input type="url" id="mp_link" placeholder="https://link.mercadopago.com.ar/..."
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition dark-mode-input">
+                    <small class="text-slate-400 mt-2 block">
+                        Si lo cargás, en la web aparecerá el botón <b>Comprar ahora</b> (en el modal) y abrirá este link en una nueva pestaña.
+                    </small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto Principal
+                    </label>
+                    <input type="file" id="foto1" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto1-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 2
+                    </label>
+                    <input type="file" id="foto2" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto2-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 3
+                    </label>
+                    <input type="file" id="foto3" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto3-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 4
+                    </label>
+                    <input type="file" id="foto4" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto4-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 5
+                    </label>
+                    <input type="file" id="foto5" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto5-info"></small>
+                </div>
+
+                <div class="lg:col-span-3 flex gap-4">
+                    <button type="submit" id="submit-btn" class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 rounded-lg transition text-lg shadow-lg hover:shadow-xl">
+                        <i class="fas fa-rocket mr-2"></i><span id="btn-texto">Publicar Producto</span>
+                    </button>
+                    <button type="button" id="cancel-btn" onclick="cancelarEdicion()" style="display:none;" class="flex-1 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-4 rounded-lg transition text-lg shadow-lg hover:shadow-xl">
+                        <i class="fas fa-times mr-2"></i>Cancelar
+                    </button>
+                </div>
+
+            </form>
+
+            <div id="notification" style="display:none;" class="mt-6 p-4 rounded-lg bg-green-500/20 border border-green-500 text-green-300">
+                <i class="fas fa-check-circle mr-2"></i><span id="notification-text"></span>
+            </div>
+
+            <div id="error-notification" style="display:none;" class="mt-6 p-4 rounded-lg bg-red-500/20 border border-red-500 text-red-300">
+                <i class="fas fa-exclamation-circle mr-2"></i><span id="error-notification-text"></span>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl shadow-2xl p-8 border border-slate-600 dark-mode-card">
+            <h2 class="text-3xl font-bold text-white mb-2 flex items-center">
+                <i class="fas fa-list mr-3 text-[#c17cc9]"></i>Productos Cargados
+            </h2>
+            <p class="text-slate-400 mb-6" id="lista-titulo">Todas las prendas</p>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-slate-700 border-b-2 border-slate-600">
+                        <tr class="text-left">
+                            <th class="px-4 py-4 font-bold text-slate-300">Nombre</th>
+                            <th class="px-4 py-4 font-bold text-slate-300">Categoría</th>
+                            <th class="px-4 py-4 font-bold text-slate-300">Talle</th>
+                            <th class="px-4 py-4 font-bold text-slate-300">Color</th>
+                            <th class="px-4 py-4 font-bold text-slate-300">Precio</th>
+                            <th class="px-4 py-4 font-bold text-slate-300">Estado</th>
+                            <th class="px-4 py-4 font-bold text-slate-300">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista" class="divide-y divide-slate-600"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+.tab-btn {
+    background-color: rgba(71, 85, 105, 0.5);
+    color: rgb(203, 213, 225);
+    border: none;
+}
+
+.tab-btn:hover {
+    background-color: rgba(71, 85, 105, 0.7);
+}
+
+.tab-btn.active {
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+    color: white;
+}
+
+tbody tr:hover {
+    background-color: rgba(71, 85, 105, 0.3);
+}
+
+@keyframes slideInNotification {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+#notification, #error-notification {
+    animation: slideInNotification 0.3s ease-out;
+}
+
+/* LIGHT MODE STYLES */
+body.light-mode {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #1e293b;
+}
+
+body.light-mode #panel {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+body.light-mode .dark-mode-card {
+    background: linear-gradient(135deg, #fff 0%, #f1f5f9 100%) !important;
+    border-color: #e2e8f0 !important;
+    color: #1e293b !important;
+}
+
+body.light-mode .dark-mode-card p,
+body.light-mode .dark-mode-card span {
+    color: #475569 !important;
+}
+
+body.light-mode .dark-mode-card .text-slate-400 {
+    color: #64748b !important;
+}
+
+body.light-mode .dark-mode-card .text-slate-300 {
+    color: #334155 !important;
+}
+
+body.light-mode .dark-mode-input {
+    background-color: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    color: #1e293b !important;
+}
+
+body.light-mode .dark-mode-input::placeholder {
+    color: #94a3b8 !important;
+}
+
+body.light-mode .dark-mode-preview {
+    background-color: #e2e8f0 !important;
+    border-color: #cbd5e1 !important;
+    color: #475569 !important;
+}
+
+body.light-mode textarea.dark-mode-input {
+    background-color: #f1f5f9 !important;
+    color: #1e293b !important;
+}
+</style>
+
+<script>
+const SUPABASE_URL = 'https://xabsqkyucsrnonogoxfn.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_npIxMJvD0sOgG0cF8MvUxw_8vV9DRR1';
+const supa = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const WORKER_URL = 'https://lively-field-3b9e.oseslisandro14.workers.dev/upload';
+const WORKER_DELETE_URL = 'https://lively-field-3b9e.oseslisandro14.workers.dev/delete';
+
+let pestanaActual = 'todos';
+let productosCompletos = [];
+let editandoId = null;
+
+// PASSWORD TOGGLE
+function togglePassword() {
+    const input = document.getElementById('password');
+    const icon = document.getElementById('eye-icon');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+
+// THEME TOGGLE
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    
+    if (document.body.classList.contains('light-mode')) {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        themeText.textContent = 'Modo Oscuro';
+        localStorage.setItem('theme', 'light');
+    } else {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        themeText.textContent = 'Modo Claro';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// LOAD THEME PREFERENCE
+window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-mode');
+        document.getElementById('theme-icon').classList.add('fa-moon');
+        document.getElementById('theme-icon').classList.remove('fa-sun');
+        document.getElementById('theme-text').textContent = 'Modo Oscuro';
+    }
+});
+
+async function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+        mostrarError('Por favor completa todos los campos');
+        return;
+    }
+
+    const { error } = await supa.auth.signInWithPassword({ email, password });
+
+    if (error) mostrarError('Error: ' + error.message);
+    else location.reload();
+}
+
+async function logout() {
+    await supa.auth.signOut();
+    location.reload();
+}
+
+async function checkUser() {
+    const { data } = await supa.auth.getUser();
+
+    if (data.user) {
+        document.getElementById('panel').style.display = 'block';
+        document.getElementById('login-box').style.display = 'none';
+        cargar();
+    }
+}
+checkUser();
+
+const CATEGORIAS_POR_TAB = {
+    todos: null,
+    buzos: ['BUZO', 'CAMPERA'],
+    pantalones: ['PANTALON'],
+    remeras: ['REMERA'],
+};
+
+const TITULOS_POR_TAB = {
+    todos: 'Todas las prendas',
+    buzos: 'Buzos y camperas',
+    pantalones: 'Pantalones',
+    remeras: 'Remeras',
+};
+
+function cambiarPestana(tipo) {
+    pestanaActual = tipo;
+    editandoId = null;
+    cancelarEdicion();
+
+    ['todos', 'buzos', 'pantalones', 'remeras'].forEach(t => {
+        const tab = document.getElementById(`tab-${t}`);
+        if (tab) tab.classList.remove('active');
+    });
+
+    const tabActual = document.getElementById(`tab-${tipo}`);
+    if (tabActual) tabActual.classList.add('active');
+
+    const listaTitle = document.getElementById('lista-titulo');
+    if (listaTitle) listaTitle.textContent = TITULOS_POR_TAB[tipo] || 'Prendas';
+
+    cargar();
+}
+
+
+function actualizarPrevisualizacion() {
+    const precioContado = parseFloat(document.getElementById('precio').value) || 0;
+
+    const descuentoRaw = document.getElementById('descuento_porcentaje').value;
+    const descuento = descuentoRaw === '' ? NaN : parseFloat(descuentoRaw);
+
+    const previewDiv = document.getElementById('preview-descuento');
+    if (!previewDiv) return;
+
+    if (precioContado <= 0) {
+        previewDiv.innerHTML = '';
+        return;
+    }
+
+    // Si no hay descuento -> NO mostramos OFF ni precio original
+    if (!Number.isFinite(descuento) || descuento <= 0) {
+        previewDiv.innerHTML = `<small class="text-white font-semibold">Precio final: $${precioContado.toLocaleString()}</small>`;
+        return;
+    }
+
+    const precioOriginal = precioContado / (1 - (descuento / 100));
+    previewDiv.innerHTML = `
+        <div class="flex items-center gap-3">
+            <small class="text-red-400 line-through font-semibold">$${precioOriginal.toLocaleString()}</small>
+            <small class="bg-pink-600 px-2 py-1 rounded text-white font-bold text-xs">${descuento}% OFF</small>
+            <small class="text-green-400 font-semibold">$${precioContado.toLocaleString()}</small>
+        </div>
+    `;
+}
+
+async function eliminarImagenDeCloudflare(urlImagen) {
+    if (!urlImagen) return true;
+
+    try {
+        const nombreArchivo = urlImagen.split('/').pop();
+        const pathMatch = urlImagen.match(/r2\.dev\/(.+?)\/[^/]+$/);
+        const folder = pathMatch ? pathMatch[1] : 'ropa';
+        const filename = `${folder}/${nombreArchivo}`;
+        
+        console.log('🗑️ Eliminando:', filename);
+        
+        let response = await fetch(WORKER_DELETE_URL, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: filename })
+        });
+
+        let data = await response.json();
+
+        if (data.success) {
+            console.log('✅ Imagen eliminada:', filename);
+            return true;
+        }
+
+        console.log('⚠️ Intentando POST...');
+        response = await fetch(WORKER_DELETE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename: filename })
+        });
+
+        data = await response.json();
+
+        if (data.success) {
+            console.log('✅ Imagen eliminada (POST):', filename);
+            return true;
+        }
+
+        return false;
+    } catch (error) {
+        console.error('❌ Error:', error);
+        return false;
+    }
+}
+
+async function subirImagen(id) {
+    const fileInput = document.getElementById(id);
+    if (!fileInput || !fileInput.files[0]) return null;
+
+    const file = fileInput.files[0];
+    const nombreArchivo = `${Date.now()}_${Math.random().toString(36).substring(7)}_${file.name}`;
+
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('filename', nombreArchivo);
+        formData.append('folder', 'ropa');
+
+        const response = await fetch(WORKER_URL, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.url;
+
+    } catch (error) {
+        console.error(`Error subiendo ${file.name}:`, error);
+        throw new Error(`Error al subir ${file.name}: ${error.message}`);
+    }
+}
+
+function mostrarNotificacion(mensaje) {
+    const notif = document.getElementById('notification');
+    if (!notif) return;
+    
+    const notifText = document.getElementById('notification-text');
+    if (notifText) notifText.textContent = mensaje;
+    notif.style.display = 'block';
+    
+    setTimeout(() => { notif.style.display = 'none'; }, 3000);
+}
+
+function mostrarError(mensaje) {
+    const notif = document.getElementById('error-notification');
+    if (!notif) return;
+    
+    const notifText = document.getElementById('error-notification-text');
+    if (notifText) notifText.textContent = mensaje;
+    notif.style.display = 'block';
+    
+    setTimeout(() => { notif.style.display = 'none'; }, 5000);
+}
+
+const form = document.getElementById('ropa-form');
+if (form) {
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = document.getElementById('submit-btn');
+        if (!submitBtn) return;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Procesando...';
+
+        try {
+            const nombreInput = document.getElementById('nombre');
+            const categoriaInput = document.getElementById('categoria');
+            const talleInput = document.getElementById('talle');
+            const colorInput = document.getElementById('color');
+            const stockInput = document.getElementById('stock');
+            const destacadoInput = document.getElementById('destacado');
+            const descripcionInput = document.getElementById('descripcion');
+            const precioInput = document.getElementById('precio');
+            const precioTarjetaInput = document.getElementById('precio_tarjeta');
+            const descuentoInput = document.getElementById('descuento_porcentaje');
+            const mpLinkInput = document.getElementById('mp_link');
+
+            if (!nombreInput || !categoriaInput || !talleInput || !colorInput || !precioInput) {
+                throw new Error('Faltan campos en el formulario');
+            }
+
+            if (!nombreInput.value || !categoriaInput.value || !talleInput.value || !colorInput.value || !precioInput.value) {
+                throw new Error('Completá los campos obligatorios (*)');
+            }
+
+            const precio = parseFloat(precioInput.value);
+            const nombre = nombreInput.value;
+
+            const descuentoRaw = descuentoInput ? descuentoInput.value : '';
+            const descuentoNum = descuentoRaw === '' ? 0 : parseFloat(descuentoRaw);
+            const descuentoParaGuardar = (Number.isFinite(descuentoNum) && descuentoNum > 0) ? descuentoNum : null;
+
+            let urls = {};
+            for (let i = 1; i <= 5; i++) {
+                const fotoInput = document.getElementById(`foto${i}`);
+                if (fotoInput && fotoInput.files.length > 0) {
+                    urls[`imagen_${i}`] = await subirImagen(`foto${i}`);
+                }
+            }
+
+            let datosProducto = {
+                nombre: nombre,
+                categoria: categoriaInput.value,
+                talle: talleInput.value,
+                color: colorInput.value,
+                stock: stockInput && stockInput.value !== '' ? parseInt(stockInput.value, 10) : 0,
+                destacado: destacadoInput ? destacadoInput.checked : false,
+                descripcion: descripcionInput ? descripcionInput.value || null : null,
+                precio: precio,
+                precio_tarjeta: precioTarjetaInput && precioTarjetaInput.value ? parseFloat(precioTarjetaInput.value) : null,
+                descuento_porcentaje: descuentoParaGuardar,
+                mp_link: mpLinkInput && mpLinkInput.value ? mpLinkInput.value.trim() : null,
+                activo: true,
+                ...urls
+            };
+
+            let error;
+            if (editandoId) {
+                ({ error } = await supa.from('productos_ropa').update(datosProducto).eq('id', editandoId));
+            } else {
+                ({ error } = await supa.from('productos_ropa').insert([datosProducto]));
+            }
+
+            if (error) throw error;
+
+            const accion = editandoId ? 'actualizada' : 'cargada';
+            mostrarNotificacion(`✓ ${nombre} ${accion} exitosamente`);
+            
+            if (form) form.reset();
+            cancelarEdicion();
+            cargar();
+
+        } catch (err) {
+            mostrarError(err.message);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-rocket mr-2"></i><span id="btn-texto">Publicar Producto</span>';
+        }
+    });
+}
+
+async function cargar() {
+    const { data } = await supa.from('productos_ropa').select('*').order('creado_en', { ascending: false });
+
+    productosCompletos = data || [];
+
+    const totalProductos = document.getElementById('total-productos');
+    const buzosEl = document.getElementById('buzos-productos');
+    const pantalonesEl = document.getElementById('pantalones-productos');
+    const remerasEl = document.getElementById('remeras-productos');
+
+    if (totalProductos) totalProductos.textContent = productosCompletos.length;
+    if (buzosEl) buzosEl.textContent = productosCompletos.filter(p => p.categoria === 'BUZO' || p.categoria === 'CAMPERA').length;
+    if (pantalonesEl) pantalonesEl.textContent = productosCompletos.filter(p => p.categoria === 'PANTALON').length;
+    if (remerasEl) remerasEl.textContent = productosCompletos.filter(p => p.categoria === 'REMERA').length;
+
+    const categoriasFiltro = CATEGORIAS_POR_TAB[pestanaActual];
+    const filtrados = categoriasFiltro
+        ? productosCompletos.filter(p => categoriasFiltro.includes(p.categoria))
+        : productosCompletos;
+
+    renderizarTabla(filtrados);
+}
+
+function renderizarTabla(productos) {
+    const lista = document.getElementById('lista');
+    if (!lista) return;
+
+    lista.innerHTML = productos.map(p => {
+        const activo = p.activo !== false;
+        const precio = Number(p.precio || 0);
+        let html = `
+        <tr class="hover:bg-slate-600/30 transition ${!activo ? 'opacity-50' : ''}">
+            <td class="px-4 py-4 font-semibold ${activo ? 'text-white' : 'text-slate-400 line-through'}">
+                ${p.nombre}${p.destacado ? ' <i class="fas fa-star text-yellow-400 text-xs" title="Destacado"></i>' : ''}
+            </td>
+            <td class="px-4 py-4 text-slate-300">${p.categoria || ''}</td>
+            <td class="px-4 py-4 text-slate-300">${p.talle || ''}</td>
+            <td class="px-4 py-4 text-slate-300">${p.color || ''}</td>
+            <td class="px-4 py-4 font-bold text-white">$${precio.toLocaleString()}</td>
+        `;
+
+        html += `
+            <td class="px-4 py-4">
+                <button onclick="toggleActivo('${p.id}', ${activo})" 
+                    class="${activo 
+                        ? 'bg-green-600 hover:bg-green-700' 
+                        : 'bg-slate-500 hover:bg-slate-600'} text-white px-3 py-1 rounded font-bold transition text-xs flex items-center gap-2 whitespace-nowrap">
+                    <i class="fas ${activo ? 'fa-eye' : 'fa-eye-slash'}"></i>
+                    ${activo ? 'Visible' : 'Oculto'}
+                </button>
+            </td>
+            <td class="px-4 py-4">
+                <div class="flex gap-2">
+                    <button onclick="editar('${p.id}')" class="bg-[#7a3280] hover:bg-[#5C2361] text-white px-3 py-1 rounded font-bold transition text-xs flex items-center gap-2">
+                        <i class="fas fa-edit"></i>Editar
+                    </button>
+                    <button onclick="eliminar('${p.id}')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded font-bold transition text-xs flex items-center gap-2">
+                        <i class="fas fa-trash"></i>Eliminar
+                    </button>
+                </div>
+            </td>
+        </tr>
+        `;
+
+        return html;
+    }).join('');
+}
+
+// ✅ NUEVA FUNCIÓN: TOGGLE ACTIVO/INACTIVO
+async function toggleActivo(id, currentEstado) {
+    const nuevoEstado = !currentEstado;
+    const { error } = await supa
+        .from('productos_ropa')
+        .update({ activo: nuevoEstado })
+        .eq('id', id);
+
+    if (error) {
+        mostrarError('Error al cambiar visibilidad: ' + error.message);
+    } else {
+        mostrarNotificacion(nuevoEstado ? '✓ Producto visible en la web' : '✓ Producto oculto en la web');
+        cargar();
+    }
+}
+
+function editar(id) {
+    const producto = productosCompletos.find(p => p.id === id);
+    if (!producto) return;
+
+    editandoId = id;
+
+    const productoIdInput = document.getElementById('producto-id');
+    const nombreInput = document.getElementById('nombre');
+    const categoriaInput = document.getElementById('categoria');
+    const talleInput = document.getElementById('talle');
+    const colorInput = document.getElementById('color');
+    const stockInput = document.getElementById('stock');
+    const destacadoInput = document.getElementById('destacado');
+    const descripcionInput = document.getElementById('descripcion');
+    const precioInput = document.getElementById('precio');
+    const precioTarjetaInput = document.getElementById('precio_tarjeta');
+    const descuentoInput = document.getElementById('descuento_porcentaje');
+    const mpLinkInput = document.getElementById('mp_link');
+
+    if (productoIdInput) productoIdInput.value = id;
+    if (nombreInput) nombreInput.value = producto.nombre || '';
+    if (categoriaInput) categoriaInput.value = producto.categoria || '';
+    if (talleInput) talleInput.value = producto.talle || '';
+    if (colorInput) colorInput.value = producto.color || '';
+    if (stockInput) stockInput.value = producto.stock ?? '';
+    if (destacadoInput) destacadoInput.checked = !!producto.destacado;
+    if (descripcionInput) descripcionInput.value = producto.descripcion || '';
+    if (precioInput) precioInput.value = producto.precio;
+    if (precioTarjetaInput) precioTarjetaInput.value = producto.precio_tarjeta || '';
+
+    if (descuentoInput) descuentoInput.value = (producto.descuento_porcentaje ?? '');
+
+    if (mpLinkInput) mpLinkInput.value = (producto.mp_link ?? '');
+
+    for (let i = 1; i <= 5; i++) {
+        const element = document.getElementById(`foto${i}-info`);
+        if (element) {
+            const imagen = producto[`imagen_${i}`];
+            if (imagen) {
+                element.textContent = '✓ Imagen actual: ' + imagen.split('/').pop();
+                element.style.color = '#34d399';
+            } else {
+                element.textContent = '';
+            }
+        }
+    }
+
+    const formTitle = document.getElementById('form-titulo');
+    const btnTexto = document.getElementById('btn-texto');
+    const cancelBtn = document.getElementById('cancel-btn');
+
+    if (formTitle) formTitle.textContent = 'Editar Prenda: ' + producto.nombre;
+    if (btnTexto) btnTexto.textContent = 'Actualizar Prenda';
+    if (cancelBtn) cancelBtn.style.display = 'block';
+
+    const formElement = document.getElementById('ropa-form');
+    if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    actualizarPrevisualizacion();
+}
+
+function cancelarEdicion() {
+    editandoId = null;
+    
+    const form = document.getElementById('ropa-form');
+    if (form) form.reset();
+    
+    const productoId = document.getElementById('producto-id');
+    if (productoId) productoId.value = '';
+    
+    const formTitle = document.getElementById('form-titulo');
+    if (formTitle) formTitle.textContent = 'Cargar Nueva Prenda';
+    
+    const btnTexto = document.getElementById('btn-texto');
+    if (btnTexto) btnTexto.textContent = 'Publicar Producto';
+    
+    const cancelBtn = document.getElementById('cancel-btn');
+    if (cancelBtn) cancelBtn.style.display = 'none';
+    
+    const descuentoInput = document.getElementById('descuento_porcentaje');
+    if (descuentoInput) descuentoInput.value = '';
+
+    const mpLinkInput = document.getElementById('mp_link');
+    if (mpLinkInput) mpLinkInput.value = '';
+    
+    for (let i = 1; i <= 5; i++) {
+        const element = document.getElementById(`foto${i}-info`);
+        if (element) {
+            element.textContent = '';
+            element.style.color = '';
+        }
+    }
+    
+    actualizarPrevisualizacion();
+}
+
+async function eliminar(id) {
+    if (!confirm("¿Estás seguro de que deseas eliminar este producto? También se eliminarán las imágenes de Cloudflare.")) return;
+
+    const submitBtn = document.getElementById('submit-btn');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Eliminando...';
+    }
+
+    try {
+        const producto = productosCompletos.find(p => p.id === id);
+        
+        if (producto) {
+            console.log('🗑️ Eliminando imágenes:', producto.nombre);
+            for (let i = 1; i <= 5; i++) {
+                if (producto[`imagen_${i}`]) {
+                    console.log(`Eliminando imagen ${i}...`);
+                    await eliminarImagenDeCloudflare(producto[`imagen_${i}`]);
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            }
+        }
+
+        const { error } = await supa.from('productos_ropa').delete().eq('id', id);
+
+        if (error) {
+            console.error('Error en Supabase:', error);
+            mostrarError('Error: ' + error.message);
+        } else {
+            mostrarNotificacion('✓ Producto e imágenes eliminados correctamente');
+            cargar();
+        }
+    } catch (err) {
+        console.error('Error al eliminar:', err);
+        mostrarError('Error al eliminar: ' + err.message);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-rocket mr-2"></i><span id="btn-texto">Publicar Producto</span>';
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') login();
+        });
+    }
+});
+
+// Inicializar preview vacío
+actualizarPrevisualizacion();
+</script>
+
+</body>
+</html>
