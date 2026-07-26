@@ -548,6 +548,43 @@ button{font:inherit;}
 .logo-animated{ animation:float 3s ease-in-out infinite; }
 
 
+.hero-photo{
+  position:absolute;
+  right:72px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  width:min(26vw,340px);
+  pointer-events:none;
+}
+.hero-photo img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  filter:
+    drop-shadow(0 30px 60px rgba(0,0,0,.45))
+    drop-shadow(0 0 36px rgba(183,95,192,.22));
+}
+
+@media (max-width: 1024px){
+  .hero-photo{
+    right:40px;
+    width:min(30vw,280px);
+  }
+}
+
+@media (max-width: 768px){
+  .hero-photo{
+    position:relative;
+    right:auto;
+    top:auto;
+    transform:none;
+    width:min(58vw,260px);
+    margin:18px auto 0;
+  }
+}
+
 .hero-deco{
   position:absolute;
   inset:0;
@@ -560,9 +597,9 @@ button{font:inherit;}
   filter:drop-shadow(0 0 18px rgba(217,168,224,.45));
   animation:twinkle 3.2s ease-in-out infinite;
 }
-.hero-star-1{ width:34px; height:34px; right:18%; top:22%; animation-delay:.2s; }
-.hero-star-2{ width:20px; height:20px; right:32%; top:60%; animation-delay:1s; }
-.hero-star-3{ width:52px; height:52px; right:8%; top:52%; animation-delay:.6s; opacity:.7; }
+.hero-star-1{ width:30px; height:30px; right:38%; top:16%; animation-delay:.2s; }
+.hero-star-2{ width:22px; height:22px; right:6%; top:68%; animation-delay:1s; }
+.hero-star-3{ width:44px; height:44px; right:30%; top:74%; animation-delay:.6s; opacity:.7; }
 
 @keyframes twinkle{
   0%,100%{ transform:scale(1); opacity:.85; }
@@ -570,9 +607,9 @@ button{font:inherit;}
 }
 
 @media (max-width: 768px){
-  .hero-star-1{ right:10%; top:14%; }
-  .hero-star-2{ right:20%; top:76%; }
-  .hero-star-3{ right:4%; top:50%; width:38px; height:38px; }
+  .hero-star-1{ right:12%; top:8%; }
+  .hero-star-2{ right:14%; top:60%; }
+  .hero-star-3{ right:60%; top:4%; width:34px; height:34px; }
 }
 
 
@@ -700,7 +737,7 @@ button{font:inherit;}
   <div class="nav-shell">
     <div class="hidden md:flex items-center justify-between px-5 py-3">
       <div onclick="irHome()" class="cursor-pointer">
-        <img src="img/fancy.png" class="h-16 md:h-20 object-contain rounded-xl" alt="Fancy Company">
+        <img src="logo-fancy.jpeg" class="h-16 md:h-20 object-contain rounded-xl" alt="Fancy Company">
       </div>
 
       <div class="flex gap-3 text-white text-sm font-medium items-center">
@@ -714,7 +751,7 @@ button{font:inherit;}
 
     <div class="md:hidden flex flex-col w-full">
       <div onclick="irHome()" class="cursor-pointer navbar-logo-mobile">
-        <img src="img/fancy.png" class="logo-animated rounded-xl" alt="Fancy Company">
+        <img src="logo-fancy.jpeg" class="logo-animated rounded-xl" alt="Fancy Company">
       </div>
       <div class="navbar-menu-mobile text-white font-medium">
         <button onclick="irHome()" class="nav-link active">HOME</button>
@@ -742,6 +779,10 @@ button{font:inherit;}
         <a class="btn-secondary" href="#catalogo">Ver destacados</a>
       </div>
     </div>
+  </div>
+
+  <div class="hero-photo">
+    <img src="hero-pareja.png" alt="Pareja con buzos y camperas Fancy Company">
   </div>
 
   <div class="hero-deco" aria-hidden="true">
