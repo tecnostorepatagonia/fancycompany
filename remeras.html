@@ -334,6 +334,7 @@ button{font:inherit;}
   background:rgba(255,255,255,.92);
   border:1px solid rgba(255,255,255,.85);
   box-shadow:var(--shadow-md);
+  cursor:pointer;
   transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
 .product-card:hover{
@@ -540,6 +541,176 @@ button{font:inherit;}
   padding:4px 6px;
 }
 
+/* PRODUCT MODAL */
+.modal-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:rgba(10,4,12,.72);
+  backdrop-filter:blur(6px);
+  padding:20px;
+  align-items:center;
+  justify-content:center;
+}
+.modal-overlay.open{ display:flex; }
+
+.modal-box{
+  position:relative;
+  width:100%;
+  max-width:920px;
+  max-height:88vh;
+  overflow-y:auto;
+  background:var(--white);
+  border-radius:28px;
+  box-shadow:0 40px 90px rgba(0,0,0,.5);
+  animation:modalPop .22s ease-out;
+}
+@keyframes modalPop{
+  from{ opacity:0; transform:translateY(14px) scale(.98); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+
+.modal-close{
+  position:absolute;
+  top:16px;
+  right:16px;
+  z-index:3;
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  border:none;
+  background:rgba(15,23,42,.55);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+}
+.modal-close:hover{ background:rgba(15,23,42,.75); }
+
+.modal-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+}
+
+.modal-gallery{
+  background:#f3e6f5;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.modal-main-image{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  background:#fff;
+  aspect-ratio:1/1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.modal-main-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.modal-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:2;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  border:none;
+  background:rgba(255,255,255,.9);
+  color:var(--primary-dark);
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  box-shadow:var(--shadow-md);
+}
+.modal-nav:hover{ background:#fff; }
+.modal-nav-prev{ left:12px; }
+.modal-nav-next{ right:12px; }
+
+.modal-thumbs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:4px;
+}
+.modal-thumb{
+  flex:0 0 auto;
+  width:56px;
+  height:56px;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  border:2px solid transparent;
+  opacity:.65;
+  transition:.15s;
+}
+.modal-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.modal-thumb.active{ border-color:var(--primary); opacity:1; }
+
+.modal-info{
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+}
+.modal-nombre{
+  font-size:1.6rem;
+  font-weight:900;
+  letter-spacing:-.02em;
+  margin:12px 0 6px;
+  color:var(--text);
+}
+.modal-meta{
+  margin:0 0 14px;
+  color:var(--muted);
+  font-size:14px;
+  font-weight:600;
+}
+.modal-descripcion{
+  margin:0 0 20px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+.modal-price-row{
+  padding:16px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  margin-bottom:20px;
+}
+.modal-precio{
+  font-size:1.8rem;
+  font-weight:900;
+  letter-spacing:-.02em;
+  color:var(--primary-dark);
+}
+.modal-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top:auto;
+}
+.modal-actions .btn-primary, .modal-actions .btn-secondary{
+  text-align:center;
+}
+
+@media (max-width:768px){
+  .modal-grid{ grid-template-columns:1fr; }
+  .modal-box{ max-height:92vh; border-radius:22px; }
+  .modal-info{ padding:24px 20px 28px; }
+}
+
 /* MOBILE */
 @keyframes float{
   0%,100%{ transform:translateY(0px); }
@@ -740,7 +911,7 @@ button{font:inherit;}
   <div class="nav-shell">
     <div class="hidden md:flex items-center justify-between px-5 py-3">
       <div onclick="irHome()" class="cursor-pointer">
-        <img src="img/fancy.png" class="h-16 md:h-20 object-contain rounded-xl" alt="Fancy Company">
+        <img src="logo-fancy.jpeg" class="h-16 md:h-20 object-contain rounded-xl" alt="Fancy Company">
       </div>
 
       <div class="flex gap-3 text-white text-sm font-medium items-center">
@@ -754,7 +925,7 @@ button{font:inherit;}
 
     <div class="md:hidden flex flex-col w-full">
       <div onclick="irHome()" class="cursor-pointer navbar-logo-mobile">
-        <img src="img/fancy.png" class="logo-animated rounded-xl" alt="Fancy Company">
+        <img src="logo-fancy.jpeg" class="logo-animated rounded-xl" alt="Fancy Company">
       </div>
       <div class="navbar-menu-mobile text-white font-medium">
         <button onclick="irHome()" class="nav-link">HOME</button>
@@ -826,6 +997,42 @@ button{font:inherit;}
   </div>
 </div>
 
+<div id="modal-overlay" class="modal-overlay" onclick="if(event.target===this) cerrarModal()">
+  <div class="modal-box">
+    <button type="button" class="modal-close" onclick="cerrarModal()" aria-label="Cerrar">✕</button>
+
+    <div class="modal-grid">
+      <div class="modal-gallery">
+        <div class="modal-main-image">
+          <button type="button" class="modal-nav modal-nav-prev" onclick="modalPrev()" aria-label="Foto anterior">‹</button>
+          <img id="modal-img" src="" alt="">
+          <button type="button" class="modal-nav modal-nav-next" onclick="modalNext()" aria-label="Foto siguiente">›</button>
+        </div>
+        <div id="modal-thumbs" class="modal-thumbs"></div>
+      </div>
+
+      <div class="modal-info">
+        <div id="modal-badge"></div>
+        <h2 id="modal-nombre" class="modal-nombre"></h2>
+        <p id="modal-meta" class="modal-meta"></p>
+        <p id="modal-descripcion" class="modal-descripcion"></p>
+
+        <div class="modal-price-row">
+          <div>
+            <span class="product-price-label">Precio</span>
+            <div id="modal-precio" class="modal-precio"></div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <a id="modal-whatsapp" class="btn-primary" href="#" target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
+          <a id="modal-mp" class="btn-secondary" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Comprar ahora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 const SUPABASE_URL='https://xabsqkyucsrnonogoxfn.supabase.co';
 const SUPABASE_KEY='sb_publishable_npIxMJvD0sOgG0cF8MvUxw_8vV9DRR1';
@@ -876,7 +1083,7 @@ function renderizar(lista){
     const talle = item.talle ? `<span class="text-xs text-slate-400 font-medium">Talle ${item.talle}</span>` : '';
 
     grid.innerHTML += `
-      <article class="product-card">
+      <article class="product-card" onclick="abrirModal('${item.id}')">
         <div class="product-inner">
           ${obtenerCategoriaBadge(item.categoria)}
           <div class="product-image-wrap">
@@ -889,12 +1096,116 @@ function renderizar(lista){
               <span class="product-price-label">Precio</span>
               <div class="product-price">$${precio}</div>
             </div>
-            <a href="https://wa.me/5492945413896?text=Hola%20quiero%20${encodeURIComponent(nombre)}" class="product-button" target="_blank" rel="noopener noreferrer">Consultar</a>
+            <a href="https://wa.me/5492945413896?text=Hola%20quiero%20${encodeURIComponent(nombre)}" class="product-button" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Consultar</a>
           </div>
         </div>
       </article>`;
   });
 }
+
+let modalImagenes = [];
+let modalIndice = 0;
+
+function obtenerImagenesProducto(item){
+  const imgs = [];
+  for (let i = 1; i <= 10; i++) {
+    const url = item[`imagen_${i}`];
+    if (url) imgs.push(url);
+  }
+  if (imgs.length === 0 && item.imagen) imgs.push(item.imagen);
+  return imgs;
+}
+
+function abrirModal(id){
+  const item = productos.find(p => String(p.id) === String(id));
+  if (!item) return;
+
+  const nombre = item.nombre || item.modelo || 'Prenda disponible';
+  const precio = Number(item.precio || item.precio_contado || 0).toLocaleString('es-AR');
+
+  modalImagenes = obtenerImagenesProducto(item);
+  modalIndice = 0;
+
+  document.getElementById('modal-badge').innerHTML = obtenerCategoriaBadge(item.categoria);
+  document.getElementById('modal-nombre').textContent = nombre;
+
+  const metaParts = [];
+  if (item.color) metaParts.push(item.color);
+  if (item.talle) metaParts.push('Talle ' + item.talle);
+  document.getElementById('modal-meta').textContent = metaParts.join(' • ') || 'Color y talle a consultar';
+
+  document.getElementById('modal-descripcion').textContent = item.descripcion || '';
+  document.getElementById('modal-descripcion').style.display = item.descripcion ? 'block' : 'none';
+
+  document.getElementById('modal-precio').textContent = '$' + precio;
+
+  const waLink = document.getElementById('modal-whatsapp');
+  waLink.href = `https://wa.me/5492945413896?text=Hola%20quiero%20${encodeURIComponent(nombre)}`;
+
+  const mpLink = document.getElementById('modal-mp');
+  if (item.mp_link) {
+    mpLink.href = item.mp_link;
+    mpLink.style.display = 'block';
+  } else {
+    mpLink.style.display = 'none';
+  }
+
+  renderModalGaleria();
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderModalGaleria(){
+  const imgEl = document.getElementById('modal-img');
+  const thumbsEl = document.getElementById('modal-thumbs');
+
+  imgEl.src = modalImagenes[modalIndice] || '';
+
+  const mostrarNav = modalImagenes.length > 1;
+  document.querySelector('.modal-nav-prev').style.display = mostrarNav ? 'grid' : 'none';
+  document.querySelector('.modal-nav-next').style.display = mostrarNav ? 'grid' : 'none';
+
+  if (!mostrarNav) {
+    thumbsEl.innerHTML = '';
+    return;
+  }
+
+  thumbsEl.innerHTML = modalImagenes.map((src, i) => `
+    <div class="modal-thumb ${i === modalIndice ? 'active' : ''}" onclick="irAImagenModal(${i})">
+      <img src="${src}" alt="Foto ${i + 1}">
+    </div>
+  `).join('');
+}
+
+function irAImagenModal(i){
+  modalIndice = i;
+  renderModalGaleria();
+}
+
+function modalPrev(){
+  if (modalImagenes.length === 0) return;
+  modalIndice = (modalIndice - 1 + modalImagenes.length) % modalImagenes.length;
+  renderModalGaleria();
+}
+
+function modalNext(){
+  if (modalImagenes.length === 0) return;
+  modalIndice = (modalIndice + 1) % modalImagenes.length;
+  renderModalGaleria();
+}
+
+function cerrarModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('modal-overlay').classList.contains('open')) return;
+  if (e.key === 'Escape') cerrarModal();
+  if (e.key === 'ArrowLeft') modalPrev();
+  if (e.key === 'ArrowRight') modalNext();
+});
 
 function irHome(){ window.location.href = 'index.html'; }
 function irBuzosCamperas(){ window.location.href = 'buzos-camperas.html'; }
