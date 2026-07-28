@@ -351,6 +351,51 @@
                     <small class="text-slate-400 mt-1 block" id="foto5-info"></small>
                 </div>
 
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 6
+                    </label>
+                    <input type="file" id="foto6" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto6-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 7
+                    </label>
+                    <input type="file" id="foto7" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto7-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 8
+                    </label>
+                    <input type="file" id="foto8" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto8-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 9
+                    </label>
+                    <input type="file" id="foto9" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto9-info"></small>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">
+                        <i class="fas fa-image mr-2 text-purple-400"></i>Foto 10
+                    </label>
+                    <input type="file" id="foto10" accept="image/*"
+                           class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#8E3A93] transition file:bg-[#8E3A93] file:text-white file:font-semibold file:border-0 file:rounded file:cursor-pointer file:px-3 file:py-1 file:mr-3 dark-mode-input">
+                    <small class="text-slate-400 mt-1 block" id="foto10-info"></small>
+                </div>
+
                 <div class="lg:col-span-3 flex gap-4">
                     <button type="submit" id="submit-btn" class="flex-1 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 rounded-lg transition text-lg shadow-lg hover:shadow-xl">
                         <i class="fas fa-rocket mr-2"></i><span id="btn-texto">Publicar Producto</span>
@@ -410,7 +455,7 @@
 }
 
 .tab-btn.active {
-    background: linear-gradient(to right, #3b82f6, #06b6d4);
+    background: linear-gradient(to right, #8E3A93, #B75FC0);
     color: white;
 }
 
@@ -768,7 +813,7 @@ if (form) {
             const descuentoParaGuardar = (Number.isFinite(descuentoNum) && descuentoNum > 0) ? descuentoNum : null;
 
             let urls = {};
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 10; i++) {
                 const fotoInput = document.getElementById(`foto${i}`);
                 if (fotoInput && fotoInput.files.length > 0) {
                     urls[`imagen_${i}`] = await subirImagen(`foto${i}`);
@@ -934,7 +979,7 @@ function editar(id) {
 
     if (mpLinkInput) mpLinkInput.value = (producto.mp_link ?? '');
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 10; i++) {
         const element = document.getElementById(`foto${i}-info`);
         if (element) {
             const imagen = producto[`imagen_${i}`];
@@ -987,7 +1032,7 @@ function cancelarEdicion() {
     const mpLinkInput = document.getElementById('mp_link');
     if (mpLinkInput) mpLinkInput.value = '';
     
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 10; i++) {
         const element = document.getElementById(`foto${i}-info`);
         if (element) {
             element.textContent = '';
@@ -1012,7 +1057,7 @@ async function eliminar(id) {
         
         if (producto) {
             console.log('🗑️ Eliminando imágenes:', producto.nombre);
-            for (let i = 1; i <= 5; i++) {
+            for (let i = 1; i <= 10; i++) {
                 if (producto[`imagen_${i}`]) {
                     console.log(`Eliminando imagen ${i}...`);
                     await eliminarImagenDeCloudflare(producto[`imagen_${i}`]);
